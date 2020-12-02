@@ -50,7 +50,7 @@ public class Movement : MonoBehaviour
         isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, checkRadius, whatIsGround);
 
         // för att röra sig höger och vänster
-        moveInput = Input.GetAxis("Horizontal"); 
+       /* moveInput = Input.GetAxis("Horizontal"); 
         Debug.Log(moveInput);
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
 
@@ -62,7 +62,7 @@ public class Movement : MonoBehaviour
         {
             flip();
         }
-
+       */
     }
 
     private void Update()
@@ -117,14 +117,14 @@ public class Movement : MonoBehaviour
         }
     }
 
-    void flip()
-    {
+    //void flip()
+    //{
         // för att flippa player objectet höger och vänster
-        facingRight = !facingRight;
-        Vector3 Scaler = transform.localScale;
-        Scaler.x *= -1;
-        transform.localScale = Scaler;
-    }
+        //facingRight = !facingRight;
+        //Vector3 Scaler = transform.localScale;
+        //Scaler.x *= -1;
+        //transform.localScale = Scaler;
+    //}
 
     void SetWallJumpingToFalse()
     {
