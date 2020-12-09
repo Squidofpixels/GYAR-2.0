@@ -11,7 +11,7 @@ public class Movement : MonoBehaviour
     private Rigidbody2D rb;
 
 
-    private bool facingRight = true;
+    //private bool facingRight = true;
 
 
     private bool isGrounded;
@@ -50,10 +50,10 @@ public class Movement : MonoBehaviour
         isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, checkRadius, whatIsGround);
 
         // för att röra sig höger och vänster
-       /* moveInput = Input.GetAxis("Horizontal"); 
+       moveInput = Input.GetAxis("Horizontal"); 
         Debug.Log(moveInput);
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
-
+       /* 
         if (facingRight == false && moveInput > 0)
         {
             flip();
