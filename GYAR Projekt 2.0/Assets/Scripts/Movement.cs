@@ -63,6 +63,12 @@ public class Movement : MonoBehaviour
             flip();
         }
        */
+
+        if(rb.position.y < -15f)
+        {
+            FindObjectOfType<GameManager>().GameOver();
+        }
+
     }
 
     private void Update()
