@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -23,12 +25,27 @@ public class Player : MonoBehaviour
         {
             TakeDamage(1);
         }
+
+        if(currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+
+        if(currentHealth <= 0)
+        {
+            Die();
+        }
     }
 
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         currentHealth -= damage;
 
         healthbar.SetHealth(currentHealth);
+    }
+
+    void Die()
+    {
+        FindObjectOfType<GameManager>().GameOver();
     }
 }
