@@ -28,7 +28,7 @@ public class Movement : MonoBehaviour
     public Transform frontCheck;
     bool wallSliding;
     public float wallSlidingSpeed;
-    private int input;
+    //private int input;
 
     bool wallJumping;
     public float xWallForce;
@@ -47,11 +47,8 @@ public class Movement : MonoBehaviour
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
 
-        isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, checkRadius, whatIsGround);
-
         // för att röra sig höger och vänster
         moveInput = Input.GetAxis("Horizontal"); 
-        Debug.Log(moveInput);
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
        /* 
         if (facingRight == false && moveInput > 0)
@@ -74,6 +71,8 @@ public class Movement : MonoBehaviour
     private void Update()
     {
         
+        isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, checkRadius, whatIsGround);
+
         if(isGrounded == true)
         {
             extraJumps = extraJumpsValue;
@@ -90,7 +89,7 @@ public class Movement : MonoBehaviour
         }
 
         // för att vägghoppa
-        if(isTouchingFront == true && isGrounded == false && input != 0)
+        if(isTouchingFront == true && isGrounded == false && moveInput != 0)
         {
             wallSliding = true;
         }
@@ -107,18 +106,17 @@ public class Movement : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && wallSliding == true)
         {
             wallJumping = true;
-            Invoke("SetWallJumpingToFalse", wallJumpTime);
+            Invoke(nameof(SetWallJumpingToFalse), wallJumpTime);
         }
 
         if(wallJumping == true)
         {
-            rb.velocity = new Vector2(xWallForce * -input, yWallForce);
+            rb.velocity = new Vector2(xWallForce * -moveInput, yWallForce);
         }
 
         if(wallJumping != true)
         {
             moveInput = Input.GetAxis("Horizontal");
-            Debug.Log(moveInput);
             rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
         }
     }
